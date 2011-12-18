@@ -5,3 +5,13 @@ Files should typically be put into these locations:
 ~/.xmonad/
 ~/.xsession
 /usr/share/xsessions/custom.desktop
+/usr/bin/dmenu_path
+
+Will need the following installed via yum:
+xmonad
+xmobar
+rxvt-unicode
+gajim
+stalonetray
+xscreensaver
+dwm-user
