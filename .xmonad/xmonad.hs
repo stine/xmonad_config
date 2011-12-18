@@ -14,12 +14,6 @@ myManageHook = composeAll
     , className =? "stalonetray" --> doIgnore
     ]
 
-myXineramaSorter = do  --TODO: kludge to reorder screens.  Fix this once I learn me some haskell.
-    srt <- getSortByXineramaRule
-    let prm (one:two:three:rest) = three:one:two:rest
-        prm x = x
-    return (prm . srt)
-
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar /home/mstine/.xmobarrc"
     xmonad $ defaultConfig
@@ -28,8 +22,7 @@ main = do
                         <+> manageHook defaultConfig
         , layoutHook = avoidStruts  $  layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
-                        { ppSort = myXineramaSorter
-                        , ppOutput = hPutStrLn xmproc
+                        { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 50
                         }
         , terminal = "urxvt"
@@ -39,10 +32,5 @@ main = do
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
         , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
         , ((0, xK_Print), spawn "scrot")
-        ]
-	++
-        [ ((m .|. mod4Mask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-            | (key, sc) <- zip [xK_w, xK_e, xK_r] [2,0,1] -- was [0..] *** change to match your screen order ***
-            , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
         ]
 	)
