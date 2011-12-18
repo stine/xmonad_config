@@ -1,0 +1,10 @@
+background "#000000"
+geometry 6x1-1680+0
+max_geometry 6x1
+icon_size 17
+icon_gravity NE
+skip_taskbar true
+sticky true
+kludges force_icons_size,fix_window_pos
+dockapp_mode simple
+window_strut none

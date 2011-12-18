@@ -2,6 +2,7 @@ This is a collection of configuration files for my xmonad-based desktop.
 
 Files should typically be put into these locations:
 ~/.xmobarrc
+~/.stalonetrayrc
 ~/.xmonad/
 ~/.xsession
 /usr/share/xsessions/custom.desktop
